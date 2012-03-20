@@ -12,5 +12,9 @@
 Dir.glob("*", File::FNM_DOTMATCH) do |item|
   if item !~ /^(?:.+\/)?\.{1,2}$/ # regex test if ending by /. or /.. 
     puts item + " => " + File.stat(item).atime.to_s
+    t = Time.new.yday # return nb day of the year
+    t_item = File.stat(item).atime.yday
+    lapstime = t - t_item
+    puts "time => " + lapstime.to_s
   end
 end
